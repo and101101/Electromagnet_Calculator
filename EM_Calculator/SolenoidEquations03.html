@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+
+body {
+ 	font: helvetica neue;
+ 	font-size: 1.0vw;
+ 	background-color:#1f579c;
+ 	color:black;
+ 	width:98%;
+ 	margin:auto;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns:30% auto;
+ 	margin:auto;
+	background-color: transparent;
+	grid-gap: 1vw;
+	padding:0;
+	width:100%;
+	}
+	
+.grid-container > div {
+	text-align: center;
+	background-color:lightgrey;
+	border-radius:2px;
+	padding:2%;
+}	
+	
+#title {
+	margin:20px auto 10px auto;
+	text-align:center;
+	padding:0;
+	font-size: 3.2vw;
+	font-weight:bold;
+}
+
+
+.sub_title {
+	font-size: 2vw;
+	font-weight:bold;
+	margin:2vw 0 2vw 0;
+	padding:0 0 0 0;
+}
+
+.item {
+	background:white;
+	width: 80%;
+	margin:1.0vw auto 1.0vw auto;
+	border-radius:2px;
+	padding:0.5vw 0 0.5vw 0;
+	font-size: 1.5vw;
+}
+
+.item02{
+	background:white;
+	width: 50%;
+	margin:1.0vw auto 1.0vw auto;
+	border-radius:2px;
+	padding:1vw 0 1vw 0;
+	font-size: 1.5vw;
+}
+
+.result {
+	font-size: 1.5vw;
+}
+
+input {
+	text-align:center;
+	width:90%;
+	border:none;
+	font-size:1.5vw;
+	padding:.5vw 0 .5vw 0;
+}
+
+#calc {
+	height:3vw;
+	width:60%;
+	margin:auto;
+	font-weight:bold;
+	border-radius:4px;
+	font-size:2.5vw;
+	cursor:pointer;
+	outline:none;
+	background:white;
+	padding:10px 0 10px 0;
+}
+#calc:hover {
+	background:#1f579c;
+	color:white;
+}
+
+@media screen and (max-width: 1000px) {
+	.grid-container {
+		grid-template-columns: 100%;
+	}
+	#title{
+		margin: 6vw 0 1vw 0;
+		font-size: 8vw;
+	}
+	.sub_title {
+		font-size: 7vw;
+	}
+	.item {
+		padding: 2vw 0 2vw 0;
+		width:80%;
+		font-size: 5vw
+	}
+	.item02{
+		padding: 2vw 0 2vw 0;
+		width:80%;
+		font-size: 5vw
+	}
+	input{
+		font-size:6vw;
+	}
+	.result{
+		font-size:6vw;
+	}
+	#calc{
+		width:80%;
+		font-size: 6vw;
+		padding: 5vw 0 8vw 0;
+	}
+}
+
+</style>
+<script src="/Applications/p5/p5.js"></script>
+<script src="SolenoidEquations03.js"></script>
+<body>
+<div id="title"><a>Electromagnet Calculator</a></div>
+<br>
+<div class ="grid-container">
+	<div class="column" id="inputs">
+		<a id= "input_box" class="sub_title">Inputs</a>
+		
+		<div class="item"><a>Wire Diameter (mm)</a><br><input id="Dw"></input></div>
+		<div class="item"><a>Ohms per 1000m of Wire (Ohms)</a><br><input id="Rw"></input></div>
+		<div class="item"><a>Max Safe Current for Wire (Amps)</a><br><input id="I"></input></div>
+		
+		<div class="item"><a>Core Height (mm)</a><br><input id="Lt"></input></div>
+		<div class="item"><a>Core Diameter (mm)</a><br><input id="Dc"></input></div>
+		<div class="item"><a>Outter Solenoid Diameter (mm)</a><br><input id="Ds"></input></div>
+		<div class="item"><a>Gap to magnetic object (mm)</a><br><input id="Dg"></input></div>		
+		<br>
+		<div id="calc" onclick="Calculate()">Calculate</div>
+	</div>
+	<div class="column" id="answers">
+		<a class="sub_title">Solution using Iron Core of 99.8% purity</a>
+		<div class="item02"><a>Wire Length in (meters) </a><br><a class="result" id="myText"></a> </div>
+		<div class="item02"><a>Number of loops </a><br><a class="result" id="that"> </a></div>
+		<div class="item02"><a>Total Resistance (Ohms)</a><br><a class="result" id="res"> </a></div>
+		<div class="item02"><a>Magnetic Field Strength (Tesla)</a><br><a class="result" id="MFS"> </a></div>
+		<div class="item02"><a>Voltage to be applied (Volts)</a><br><a class="result" id="Volt"> </a></div>
+		<div class="item02"><a>Magnetic Force (Newtons)</a><br><a class="result" id="HFC"> </a></div>
+		<div id="EMdrawing"></div>
+	</div>
+</div>
+</body>
+</html>
